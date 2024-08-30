@@ -1,14 +1,16 @@
-import { screen, render } from '@testing-library/react'
+import React from 'react'
+import { render } from '@testing-library/react'
 import { AuthAdmin } from './AuthAdmin'
+import { expect, test } from 'vitest'
 
-describe('App tests', () => {
-    it('should render the title', () => {
-        render(<AuthAdmin />)
+test('App tests', () => {
+    test('should render the title', () => {
+        const { container } =  render(<AuthAdmin />)
 
         expect(
-            screen.getByRole('heading', {
+            container.getByRole('heading', {
                 level: 1,
             })
-        ).toHaveTextContent('Vite + React')
+        ).toEqual('Vite + React')
     })
 })
