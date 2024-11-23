@@ -19,7 +19,7 @@ export type AuthAdminProps = AdminProps & {
 export const defaultAuthOptions = {
     profilePage: true,
     userMenuItems: [],
-    passwordRules: defaultPasswordRules || null, // TODO - not yet implemented
+    passwordRules: defaultPasswordRules,
 }
 
 export const AuthAdmin: FC<AuthAdminProps> = ({
