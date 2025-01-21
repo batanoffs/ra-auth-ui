@@ -25,7 +25,7 @@ export type PasswordRulesType = {
     requiredLowercase?: boolean
     requiredUppercase?: boolean
     requiredLength?: number
-    requiredMinSymbols?: number
+    requireNonAlphanumeric?: boolean
 }
 
 export const defaultPasswordRules: PasswordRulesType = {
@@ -33,5 +33,5 @@ export const defaultPasswordRules: PasswordRulesType = {
     requiredLowercase: true,
     requiredUppercase: true,
     requiredLength: 8,
-    requiredMinSymbols: 1,
+    requireNonAlphanumeric: true,
 }

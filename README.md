@@ -59,11 +59,11 @@ yarn run start-demo
 ## Available Props
 
 
-| Name        | Type              | Default   | Description                                                                                             |
-| ----------- | ----------------- | --------- | ------------------------------------------------------------------------------------------------------- |
-| `authRoutes`  | array             | array     | *If unset provides default authentication routes and screens. But you can pass custom routes like `{ path: string; Component: FC }`*                                          |
-| `authLayout`  | object            | undefined | *If set to '{userMenu: true}' provides default UserMenu. If set to object pass on the props to Layout.* |
-| `profilePage` | bool \| component | true      | *If set to 'true' provides default Profile Page layout. You can pass your own component.*               |
+| Name          | Type              | Default   | Description                                                                                                                                                            |
+| ------------- | ----------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authRoutes`  | array             | array     | *If unset provides default authentication routes and screens. But you can pass custom routes like `{ path: string; Component: FC }`*                                   |
+| `authOptions` | object            | undefined | *If unset provides default Profile Page, integrated User Menu and password rules out of the box. All supported fields explained [below](#functionality-of-authlayout)* |
+| `profilePage` | bool \| component | true      | *If set to 'true' provides default Profile Page layout. You can pass your own component.*                                                                              |
 
 
 <br/>
@@ -122,30 +122,18 @@ const App = () => {
 Example
 ``` -->
 
-## Functionality of authLayout
+## Functionality of authOptions
  Provides authenticated layout with smart defaults.
 
 - ### Defaults 
     The default props can be set by `authOptions`
 
-    | Props         | Type    | Defaults    | Behavior                                                                                                                           |
-    | ------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-    | profilePage   | boolean | true        | *By default profile page is enabled and a basic profile component is set.*                                                         |
-    | userMenuItems | array   | empty array | *Not specified.*                                                                                                                   |
-    | passwordRules | object  | all enabled | *By default all rules are enabled. A digit, lowercase, non-alphanumeric,uppercase,min-length is `8` and min one symbol is needed.* |
-
-
-- ### Supports object
-
-  -   userMenu - if no `appBar` is passed
-      -   true - default menu with profile link and logout button
-      -   array of object - {to, ...}
-      -   array of elements - TODO fnc receiving permissions and return element
-
-  - Other supported keys
-      -   menu
-      -   appBar
-      -   sideBar
+    | Props             | Type                 | Defaults    | Description                                                                                                                                                                                   |
+    | ----------------- | -------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | profilePage       | boolean \| Component | true        | *By default profile page is enabled and a basic profile component is set. You can opt out by setting it to `false` or pass your own component which will be rendered at the `/profile` route* |
+    | userMenuItems     | array                | empty array | *Populates the user menu with items depending on the `authOptions` configuration*                                                                                                             |
+    | passwordRules     | object               | all enabled | *By default all rules are enabled. A digit, lowercase, non-alphanumeric,uppercase,min-length is `8` and min one symbol is needed.*                                                            |
+    | loginRedirectPath | string               | not set     | *The path to get redirected after a successful login attempt*                                                                                                                                 |
 
 - ### profilePage - works in three possible modes:
 
@@ -158,10 +146,6 @@ Example
 - ### authOptions
 
   If unset provides default user menu ready to use. But you can pass custom profilePage, loginRedirectPath or array of userMenuItems to the user menu.
-
-- ### profilePage
-  -   default is provided
-  -   supports passing own component
 
 - ### loginRedirectPath
   -   the path to get redirected after a successful login attempt
